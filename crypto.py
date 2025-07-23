@@ -53,22 +53,22 @@ def aes_decrypt(ciphertext: str, key: str, iv: str,
     return plaintext
 
 
-def md5(text: str) -> str:
+def md5(text: str, encoding="utf-8") -> str:
     """
     MD5 Hash加密
     :param text: 待加密消息
     :return: 加密后消息的hex字符串
     """
-    return hashlib.md5(text.encode()).hexdigest()
+    return hashlib.md5(text.encode(encoding)).hexdigest()
 
 
-def sm3(text: str) -> str:
+def sm3(text: str, encoding="utf-8") -> str:
     """
     SM3 Hash加密
     :param text: 待加密消息
     :return: 加密后消息的hex字符串
     """
-    return sm3crypto.sm3_hash(text.encode())
+    return sm3crypto.sm3_hash(text.encode(encoding))
 
 
 def sm4_encrypt(plaintext: str, key: str,

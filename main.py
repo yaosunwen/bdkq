@@ -9,6 +9,7 @@ from json import JSONDecodeError
 
 from datetime import datetime, date, timedelta
 from pathlib import Path
+from types import SimpleNamespace
 from typing import Callable, Any, List
 
 import yaml
@@ -17,19 +18,9 @@ from crypto import md5, sm3, sm4_decrypt, sm4_encrypt, base64_encode
 
 import aiohttp
 
-user_agent: str
-api_secret: str
-version: str
-access_token: str
-referer: str
-url_prefix: str
-mode: str
-appointment_date: date
-department_id: int
-tap_index: int
-patient_id: int
-httpclient: aiohttp.ClientSession
 app_home_path = str(Path(__file__).parent)
+app_config: Any
+httpclient: aiohttp.ClientSession
 
 
 def get_nonce() -> str:
@@ -56,11 +47,11 @@ def get_random_hex_string() -> str:
 
 
 def get_rid() -> str:
-    return md5(access_token)[8:24].lower() + "#" + md5(get_random_hex_string())[8:24].lower()
+    return md5(app_config.access_token)[8:24].lower() + "#" + md5(get_random_hex_string())[8:24].lower()
 
 
 def get_sm4_key(x_sign: str) -> str:
-    text = "".join(reversed(x_sign + ":" + api_secret))
+    text = "".join(reversed(x_sign + ":" + app_config.api_secret))
     # print(text)
     hash = sm3(text)
     hash = hash[24:40]
@@ -98,11 +89,11 @@ def get_sign(params: dict, data: dict | str, nonce: str, timestamp: int) -> str:
 
     arr.append("requesttime=" + str(timestamp))
     arr.append("requestotp=" + nonce)
-    arr.append("secret=" + api_secret)
+    arr.append("secret=" + app_config.api_secret)
     u = "&".join(arr)
 
-    c = sm3(str(timestamp) + "##" + api_secret)
-    d = sm3(nonce + "##" + api_secret)
+    c = sm3(str(timestamp) + "##" + app_config.api_secret)
+    d = sm3(nonce + "##" + app_config.api_secret)
     l = base64_encode(u)
     sign = sm3("[" + c + "#" + sm3(l) + "#" + d + "]")
     return sign
@@ -178,10 +169,10 @@ def wrap_http_method(func: Callable[..., aiohttp.ClientResponse]):
         headers["signature"] = sign
         headers["request_otp"] = nonce
         headers["request_time"] = str(timestamp)
-        headers["access_token"] = access_token
+        headers["access_token"] = app_config.access_token
         headers["rid"] = get_rid()
         headers.setdefault("Charset", "utf-8")
-        headers.setdefault("Referer", referer)
+        headers.setdefault("Referer", app_config.referer)
         headers.setdefault("Accept-Encoding", "gzip, deflate, br")
 
         encrypt_data = sm4_encrypt(kwargs["data"], sign[24:40])
@@ -220,16 +211,17 @@ def load_auth_data():
 
 
 def load_app_config():
-    with open(f"{app_home_path}/app.config.yml", "r") as f:
+    with open(f"{app_home_path}/appconfig.yml", "r") as f:
         return yaml.load(f, Loader=yaml.FullLoader)
 
 
 def init():
-    app_config = load_app_config()
-    globals().update(app_config)
+    global app_config
+    app_config = SimpleNamespace(**load_app_config())
 
     auth_data = load_auth_data()
-    globals().update(auth_data)
+    app_config.version = auth_data["version"]
+    app_config.access_token = auth_data["access_token"]
 
     # login_data = load_login_data()
     # sign = login_data["request"]["headers"]["signature"]
@@ -282,7 +274,7 @@ def retry(retry_times: int, interval: float):
 
 @retry(-1, 0.5)
 async def get_department_list(**kwargs):
-    url = f"{url_prefix}@{version}/api/appointmentInfo/getTodayDeptList"
+    url = f"{app_config.url_prefix}@{app_config.version}/api/appointmentInfo/getTodayDeptList"
     params = {
         "tapIndex": "0"
     }
@@ -296,7 +288,7 @@ async def get_department_list(**kwargs):
 
 @retry(-1, 0.5)
 async def get_yy_department_list(**kwargs):
-    url = f"{url_prefix}@{version}/api/appointmentInfo/getYyDeptList"
+    url = f"{app_config.url_prefix}@{app_config.version}/api/appointmentInfo/getYyDeptList"
     params = {
         "tapIndex": "0"
     }
@@ -310,7 +302,7 @@ async def get_yy_department_list(**kwargs):
 
 @retry(-1, 0.5)
 async def get_doctor_list(department_id: int, tap_index: int, **kwargs):
-    url = f"{url_prefix}@{version}/api/appointmentInfo/getDoctorList"
+    url = f"{app_config.url_prefix}@{app_config.version}/api/appointmentInfo/getDoctorList"
     payload = {
         "deptCode": str(department_id),
         "tapIndex": str(tap_index)
@@ -327,7 +319,7 @@ async def get_doctor_list(department_id: int, tap_index: int, **kwargs):
 
 @retry(-1, 0.5)
 async def get_yy_doctor_list(department_id: int, tap_index: int, appointment_date: date, **kwargs):
-    url = f"{url_prefix}@{version}/api/appointmentInfo/getYyDoctorList"
+    url = f"{app_config.url_prefix}@{app_config.version}/api/appointmentInfo/getYyDoctorList"
     payload = {
         "time": appointment_date.strftime("%Y-%m-%d"),
         "deptCode": str(department_id),
@@ -349,7 +341,7 @@ async def get_yy_doctor_list(department_id: int, tap_index: int, appointment_dat
 
 @retry(100, 0.5)
 async def get_schedule_list(department_id: int, tap_index: int, doctor_id: int, **kwargs):
-    url = f"{url_prefix}@{version}/api/appointmentInfo/getScheduleList"
+    url = f"{app_config.url_prefix}@{app_config.version}/api/appointmentInfo/getScheduleList"
     payload = {
         "deptId": str(department_id),
         "doctId": str(doctor_id),
@@ -364,7 +356,7 @@ async def get_schedule_list(department_id: int, tap_index: int, doctor_id: int, 
 
 @retry(100, 0.5)
 async def get_yy_schedule_list(department_id: int, tap_index: int, doctor_id: int, appointment_date: date, **kwargs):
-    url = f"{url_prefix}@{version}/api/appointmentInfo/getYyScheduleList"
+    url = f"{app_config.url_prefix}@{app_config.version}/api/appointmentInfo/getYyScheduleList"
     payload = {
         "time": appointment_date.strftime("%Y-%m-%d"),
         "deptId": str(department_id),
@@ -382,7 +374,7 @@ async def get_yy_schedule_list(department_id: int, tap_index: int, doctor_id: in
 async def submit_order(patient_id: int, schedule_id: str, appointment_date: date, department_id: int, sgu_id: str,
                        dist: str,
                        **kwargs):
-    url = f"{url_prefix}@{version}/api/appointmentRecord/todayAppointmentCreateOrder"
+    url = f"{app_config.url_prefix}@{app_config.version}/api/appointmentRecord/todayAppointmentCreateOrder"
     payload = {
         "patientId": str(patient_id),
         "scheduleId": str(schedule_id),
@@ -400,7 +392,7 @@ async def submit_order(patient_id: int, schedule_id: str, appointment_date: date
 async def submit_yy_order(patient_id: int, schedule_id: str, appointment_date: date, department_id: int, sgu_id: str,
                           dist: str,
                           **kwargs):
-    url = f"{url_prefix}@{version}/api/appointmentRecord/yyAppointmentCreateOrder"
+    url = f"{app_config.url_prefix}@{app_config.version}/api/appointmentRecord/yyAppointmentCreateOrder"
     payload = {
         "patientId": str(patient_id),
         "scheduleId": str(schedule_id),
@@ -433,7 +425,7 @@ async def submit_yy_order(patient_id: int, schedule_id: str, appointment_date: d
 
 
 async def get_order_list(patient_id: int, **kwargs):
-    url = f"{url_prefix}@{version}/api/appointmentRecord/getAppointmentRecord"
+    url = f"{app_config.url_prefix}@{app_config.version}/api/appointmentRecord/getAppointmentRecord"
     params = {
         "page": 0,
         "size": 10,
@@ -618,18 +610,17 @@ async def try_department(mode: str,
 async def main():
     global httpclient
     async with aiohttp.ClientSession(connector=aiohttp.TCPConnector(ssl=False),
-                                     # proxy="http://11.10.105.227:9090",
-                                     headers={'User-Agent': user_agent}) as session:
+                                     headers={'User-Agent': app_config.user_agent}) as session:
         httpclient = session
         httpclient.get = wrap_http_method(httpclient.get)
         httpclient.post = wrap_http_method(httpclient.post)
 
         try:
-            await try_department(mode,
-                                 patient_id,
-                                 department_id,
-                                 tap_index,
-                                 appointment_date)
+            await try_department(app_config.mode,
+                                 app_config.patient_id,
+                                 app_config.department_id,
+                                 app_config.tap_index,
+                                 app_config.appointment_date)
         except StopException as e:
             print(e)
 
