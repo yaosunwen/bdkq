@@ -5,6 +5,7 @@ import random
 import sys
 from functools import wraps
 import time
+from itertools import groupby
 from json import JSONDecodeError
 
 from datetime import datetime, date, timedelta
@@ -272,6 +273,20 @@ def retry(retry_times: int, interval: float):
     return decorator
 
 
+def concurrent(max_workers: int):
+    def decorator(func):
+        semaphore = asyncio.Semaphore(max_workers)
+
+        @wraps(func)
+        async def wrapper(*args, **kwargs):
+            async with semaphore:
+                return await func(*args, **kwargs)
+
+        return wrapper
+
+    return decorator
+
+
 @retry(-1, 0.5)
 async def get_department_list(**kwargs):
     url = f"{app_config.url_prefix}@{app_config.version}/api/appointmentInfo/getTodayDeptList"
@@ -300,6 +315,7 @@ async def get_yy_department_list(**kwargs):
             raise Exception(content["message"])
 
 
+@concurrent(5)
 @retry(-1, 0.5)
 async def get_doctor_list(department_id: int, tap_index: int, **kwargs):
     url = f"{app_config.url_prefix}@{app_config.version}/api/appointmentInfo/getDoctorList"
@@ -317,6 +333,7 @@ async def get_doctor_list(department_id: int, tap_index: int, **kwargs):
             raise Exception(content["message"])
 
 
+@concurrent(5)
 @retry(-1, 0.5)
 async def get_yy_doctor_list(department_id: int, tap_index: int, appointment_date: date, **kwargs):
     url = f"{app_config.url_prefix}@{app_config.version}/api/appointmentInfo/getYyDoctorList"
@@ -339,6 +356,7 @@ async def get_yy_doctor_list(department_id: int, tap_index: int, appointment_dat
             raise RetryException()
 
 
+@concurrent(5)
 @retry(100, 0.5)
 async def get_schedule_list(department_id: int, tap_index: int, doctor_id: int, **kwargs):
     url = f"{app_config.url_prefix}@{app_config.version}/api/appointmentInfo/getScheduleList"
@@ -354,6 +372,7 @@ async def get_schedule_list(department_id: int, tap_index: int, doctor_id: int, 
         raise RetryException()
 
 
+@concurrent(5)
 @retry(100, 0.5)
 async def get_yy_schedule_list(department_id: int, tap_index: int, doctor_id: int, appointment_date: date, **kwargs):
     url = f"{app_config.url_prefix}@{app_config.version}/api/appointmentInfo/getYyScheduleList"
@@ -370,6 +389,7 @@ async def get_yy_schedule_list(department_id: int, tap_index: int, doctor_id: in
         raise RetryException()
 
 
+@concurrent(1)
 @retry(-1, 0.5)
 async def submit_order(patient_id: int, schedule_id: str, appointment_date: date, department_id: int, sgu_id: str,
                        dist: str,
@@ -388,6 +408,7 @@ async def submit_order(patient_id: int, schedule_id: str, appointment_date: date
         return content
 
 
+@concurrent(1)
 @retry(-1, 0.5)
 async def submit_yy_order(patient_id: int, schedule_id: str, appointment_date: date, department_id: int, sgu_id: str,
                           dist: str,
@@ -448,30 +469,20 @@ class StopException(Exception):
     pass
 
 
-async def wait_for_success(tasks: List[asyncio.Task], is_success: Callable[[asyncio.Task], bool]):
+async def wait_for_success(tasks: List[asyncio.Task]):
     try:
         pending = set(tasks)
         while len(pending) > 0:
             done, pending = await asyncio.wait(pending, return_when=asyncio.FIRST_COMPLETED)
             for task in done:
-                # if isinstance(task.exception(), StopException):
-                #     raise task.exception()
-                if is_success(task):
+                if isinstance(task.exception(), StopException):
+                    raise task.exception()
+                if task.exception() is None:
                     return task.result()
     finally:
         for task in tasks:
             if not task.done() and not task.cancelled():
                 task.cancel()
-
-
-async def wait_for_stop(tasks):
-    def is_stop(task: asyncio.Task):
-        if isinstance(task.exception(), StopException):
-            raise task.exception()
-        else:
-            return False
-
-    await wait_for_success(tasks, is_stop)
 
 
 async def try_doctor(mode: str,
@@ -489,14 +500,14 @@ async def try_doctor(mode: str,
                                                      doctor_id,
                                                      appointment_date))
             for i in range(5)
-        ], is_success=lambda task: isinstance(task.result(), list))
+        ])
     else:
         schedule_list = await wait_for_success([
             asyncio.create_task(get_schedule_list(department_id,
                                                   tap_index,
                                                   doctor_id))
             for i in range(5)
-        ], is_success=lambda task: isinstance(task.result(), list))
+        ])
 
     if schedule_list is None:
         schedule_list = []
@@ -537,15 +548,20 @@ async def try_department(mode: str,
                          department_id: int,
                          tap_index: int,
                          appointment_date: date):
-    tasks = []
-    for i in range(5):
-        if mode == "yy":
-            tasks.append(asyncio.create_task(get_yy_doctor_list(department_id, tap_index, appointment_date)))
-        else:
-            tasks.append(asyncio.create_task(get_doctor_list(department_id, tap_index)))
-        await asyncio.sleep(1)
+    if mode == "yy":
+        doctor_list = await wait_for_success([
+            asyncio.create_task(get_yy_doctor_list(department_id,
+                                                   tap_index,
+                                                   appointment_date))
+            for i in range(5)
+        ])
+    else:
+        doctor_list = await wait_for_success([
+            asyncio.create_task(get_doctor_list(department_id,
+                                                tap_index))
+            for i in range(5)
+        ])
 
-    doctor_list = await wait_for_success(tasks, lambda task: isinstance(task.result(), list))
     if doctor_list is None:
         raise RetryException()
 
@@ -566,45 +582,33 @@ async def try_department(mode: str,
         print("没有合适的医生")
         raise RetryException(5)
 
-    await wait_for_stop([
-        asyncio.create_task(try_doctor(mode,
-                                       patient_id,
-                                       department_id,
-                                       tap_index,
-                                       doctor["doctId"],
-                                       doctor["doctName"],
-                                       date.fromtimestamp(doctor["visitDate"] / 1000)))
-        for doctor in doctor_list if doctor["ygzc"] == "知名专家"])
-    await wait_for_stop([
-        asyncio.create_task(try_doctor(mode,
-                                       patient_id,
-                                       department_id,
-                                       tap_index,
-                                       doctor["doctId"],
-                                       doctor["doctName"],
-                                       date.fromtimestamp(doctor["visitDate"] / 1000)))
-        for doctor in doctor_list if doctor["ygzc"] == "主任医师"])
-    await wait_for_stop([
-        asyncio.create_task(try_doctor(mode,
-                                       patient_id,
-                                       department_id,
-                                       tap_index,
-                                       doctor["doctId"],
-                                       doctor["doctName"],
-                                       date.fromtimestamp(doctor["visitDate"] / 1000)))
-        for doctor in doctor_list if doctor["ygzc"] == "副主任医师"])
+    def doctor_comparator(doctor):
+        if doctor["ygzc"] == "知名专家":
+            return 1
+        elif doctor["ygzc"] == "主任医师":
+            return 2
+        elif doctor["ygzc"] == "副主任医师":
+            return 3
+        elif doctor["ygzc"] == "主治医师":
+            return 4
+        elif doctor["ygzc"] == "医师":
+            return 5
+        return 6
 
-    # await wait_for_stop([
-    #     asyncio.create_task(try_doctor(mode,
-    #                                    patient_id,
-    #                                    department_id,
-    #                                    tap_index,
-    #                                    doctor["doctId"],
-    #                                    doctor["doctName"],
-    #                                    date.fromtimestamp(doctor["visitDate"] / 1000)))
-    #     for doctor in doctor_list if doctor["doctId"] == "0"])
+    doctor_list = sorted(doctor_list, key=doctor_comparator)
+    for k, g in groupby(doctor_list, key=doctor_comparator):
+        await wait_for_success([
+            asyncio.create_task(try_doctor(mode,
+                                           patient_id,
+                                           department_id,
+                                           tap_index,
+                                           doctor["doctId"],
+                                           doctor["doctName"],
+                                           date.fromtimestamp(doctor["visitDate"] / 1000)))
+            for doctor in g
+        ])
 
-    print("医生全部执行完毕")
+    print("全部执行完毕")
 
 
 async def main():
@@ -622,7 +626,7 @@ async def main():
                                  app_config.tap_index,
                                  app_config.appointment_date)
         except StopException as e:
-            print(e)
+            print("Got Stopped", e)
 
 
 if __name__ == "__main__":
