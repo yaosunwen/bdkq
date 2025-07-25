@@ -69,6 +69,11 @@ def decrypt_response(encrypt_text: str, x_sign: str) -> str:
     return sm4_decrypt(encrypt_text, key)
 
 
+def decrypt_request(encrypt_text, sign):
+    key = sign[24:40]
+    return sm4_decrypt(encrypt_text, key)
+
+
 def to_unicode(text: str) -> str:
     return ''.join(c if ord(' ') <= ord(c) < 127 else '\\u{0:04x}'.format(ord(c)) for c in text)
 
@@ -212,28 +217,38 @@ def load_auth_data():
 
 
 def load_app_config():
-    with open(f"{app_home_path}/appconfig.yml", "r") as f:
-        return yaml.load(f, Loader=yaml.FullLoader)
-
-
-def init():
     global app_config
-    app_config = SimpleNamespace(**load_app_config())
+    with open(f"{app_home_path}/appconfig.yml", "r") as f:
+        data = yaml.load(f, Loader=yaml.FullLoader)
+        app_config = SimpleNamespace(**data)
 
+
+async def init():
     auth_data = load_auth_data()
-    app_config.version = auth_data["version"]
-    app_config.access_token = auth_data["access_token"]
+    login_data = load_login_data()
+    if auth_data["timestamp"] > login_data["timestamp"]:
+        app_config.version = auth_data["version"]
+        app_config.access_token = auth_data["access_token"]
+    else:
+        sign = login_data["request"]["headers"]["signature"]
+        encrypt = login_data["response"].get("body", {}).get("data")
+        if encrypt is None:
+            login_request_body = decrypt_request(login_data["request"]["body"]["data"], sign)
+            print(login_request_body)
+            login_data = await login(login_request_body)
+            if login_data is None:
+                return
+            else:
+                # save_login_data(login_data)
+                sign = login_data["request"]["headers"]["signature"]
+                print(sign)
+                encrypt = login_data["response"].get("body", {}).get("data")
+                print(encrypt)
 
-    # login_data = load_login_data()
-    # sign = login_data["request"]["headers"]["signature"]
-    # encrypt = login_data["response"]["body"]["data"]
-    # version = login_data["response"]["headers"]["x-version"]
-    # print("set version:", version)
-    # text = decrypt_response(encrypt, sign)
-    # content = json.loads(text)
-    # print(content)
-    # access_token = content['data']["accessToken"]
-    # print("set access token:", access_token)
+        text = decrypt_response(encrypt, sign)
+        content = json.loads(text)
+        app_config.access_token = content['data']["accessToken"]
+        app_config.version = login_data["response"]["headers"]["x-version"]
 
 
 class RetryException(Exception):
@@ -285,6 +300,23 @@ def concurrent(max_workers: int):
         return wrapper
 
     return decorator
+
+
+async def login(body):
+    url = f"{app_config.url_prefix}@default/wechat/login"
+    async with httpclient.post(url, data=body) as response:
+        content = await response.json()
+        if "data" in content:
+            return {
+                "request": {
+                    "headers": response.request_info.headers,
+                },
+                "response": {
+                    "headers": response.headers,
+                    "body": content
+                },
+                "timestamp": get_timestamp()
+            }
 
 
 @retry(-1, 0.5)
@@ -612,12 +644,18 @@ async def try_department(mode: str,
 
 
 async def main():
+    load_app_config()
+
     global httpclient
     async with aiohttp.ClientSession(connector=aiohttp.TCPConnector(ssl=False),
                                      headers={'User-Agent': app_config.user_agent}) as session:
         httpclient = session
         httpclient.get = wrap_http_method(httpclient.get)
         httpclient.post = wrap_http_method(httpclient.post)
+
+        await init()
+        test_sign()
+        test_crypt()
 
         try:
             await try_department(app_config.mode,
@@ -630,7 +668,4 @@ async def main():
 
 
 if __name__ == "__main__":
-    init()
-    test_sign()
-    test_crypt()
     asyncio.run(main())
