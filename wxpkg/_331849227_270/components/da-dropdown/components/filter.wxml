@@ -1,0 +1,19 @@
+<view class="da-dropdown-filter data-v-49f4ecbc">
+    <view class="da-dropdown-filter-box data-v-49f4ecbc" wx:for="{{a}}" wx:key="n">
+        <view class="da-dropdown-filter--title data-v-49f4ecbc">{{item.a}}</view>
+        <view class="da-dropdown-filter-content data-v-49f4ecbc">
+            <block wx:if="{{item.b}}">
+                <view bindtap="{{opt.d}}" class="{{['da-dropdown-filter-item','da-dropdown-tag','data-v-49f4ecbc',opt.b]}}" wx:for="{{item.c}}" wx:for-item="opt" wx:key="c">
+                    <text class="da-dropdown-tag--text data-v-49f4ecbc">{{opt.a}}</text>
+                </view>
+            </block>
+            <block wx:elif="{{item.d}}">
+                <view bindtap="{{opt.d}}" class="{{['da-dropdown-filter-item','da-dropdown-tag','data-v-49f4ecbc',opt.b]}}" wx:for="{{item.e}}" wx:for-item="opt" wx:key="c">
+                    <text class="da-dropdown-tag--text data-v-49f4ecbc">{{opt.a}}</text>
+                </view>
+            </block>
+            <slider activeColor="{{item.k}}" bindchange="{{item.m}}" class="data-v-49f4ecbc" max="{{item.i}}" min="{{item.h}}" showValue="{{item.l}}" step="{{item.j}}" style="width:100%" value="{{item.g}}" wx:elif="{{item.f}}"></slider>
+        </view>
+    </view>
+    <part-dropdown-footer bind:__l="__l" bindconfirm="{{c}}" bindreset="{{b}}" class="data-v-49f4ecbc" uI="49f4ecbc-0" uP="{{d}}" wx:if="{{d}}"></part-dropdown-footer>
+</view>

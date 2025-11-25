@@ -1,0 +1,23 @@
+<view bindtap="{{e}}" class="maskBox data-v-9a271bfa" wx:if="{{a}}">
+    <view class="btnBox data-v-9a271bfa">
+        <image alt="" class="closeMask data-v-9a271bfa" src="{{b}}"></image>
+        <view class="oHead data-v-9a271bfa">
+            <text class="data-v-9a271bfa">选择就诊人</text>
+        </view>
+        <scroll-view class="peopleBox data-v-9a271bfa" scrollY="true">
+            <view bindtap="{{item.e}}" class="peopleItem data-v-9a271bfa" wx:for="{{c}}" wx:key="f">
+                <view class="{{['data-v-9a271bfa',item.d]}}">
+                    <view bindtap="{{item.b}}" class="pen_item data-v-9a271bfa">
+                        <view class="top_left data-v-9a271bfa">
+                            <image alt="" class="data-v-9a271bfa" src="{{d}}"></image>
+                            <text class="data-v-9a271bfa">{{item.a}}</text>
+                        </view>
+                    </view>
+                    <view class="patientIdNumber data-v-9a271bfa">
+                        <text class="data-v-9a271bfa">证件号：{{item.c}}</text>
+                    </view>
+                </view>
+            </view>
+        </scroll-view>
+    </view>
+</view>

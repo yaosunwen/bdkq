@@ -1,0 +1,17 @@
+<view class="uni-file-picker">
+    <view class="uni-file-picker__header" wx:if="{{a}}">
+        <text class="file-title">{{b}}</text>
+        <text class="file-count">{{c}}/{{d}}</text>
+    </view>
+    <upload-image bind:__l="__l" bindchoose="{{g}}" binddelFile="{{h}}" binduploadFiles="{{f}}" uI="37e9be00-0" uP="{{i}}" uS="{{['d']}}" wx:if="{{e}}">
+        <slot wx:if="{{$slots.d}}"></slot>
+        <block wx:else>
+            <view class="icon-add"></view>
+            <view class="icon-add rotate"></view>
+        </block>
+    </upload-image>
+    <upload-file bind:__l="__l" bindchoose="{{l}}" binddelFile="{{m}}" binduploadFiles="{{k}}" uI="37e9be00-1" uP="{{n}}" uS="{{['d']}}" wx:if="{{j}}">
+        <slot wx:if="{{$slots.d}}"></slot>
+        <button size="mini" type="primary" wx:else>选择文件</button>
+    </upload-file>
+</view>

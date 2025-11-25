@@ -1,0 +1,12 @@
+<view class="mask data-v-ae9c6bc7" wx:if="{{a}}">
+    <view class="box data-v-ae9c6bc7">
+        <view class="name data-v-ae9c6bc7">信息保护指引</view>
+        <view class="info data-v-ae9c6bc7">
+            <text class="data-v-ae9c6bc7">感谢您使用{{b}}线上诊疗服务。使用前请仔细阅读并同意<text bindtap="{{c}}" class="grysxy data-v-ae9c6bc7">《个人信息隐私协议》</text>， 当你点击同意并开始使用产品服务时，即表示您已理解并同意该条款内容，该条款将对您产生法律约束力，如您拒绝，将无法使用本产品。</text>
+        </view>
+        <view class="bottom data-v-ae9c6bc7">
+            <button bindtap="{{d}}" class="noAgreeBtn data-v-ae9c6bc7">不同意并退出</button>
+            <button bindagreeprivacyauthorization="{{e}}" class="agreeBtn data-v-ae9c6bc7" openType="agreePrivacyAuthorization">同意并继续</button>
+        </view>
+    </view>
+</view>

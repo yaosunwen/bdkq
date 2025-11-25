@@ -1,0 +1,34 @@
+<view class="{{['da-dropdown','data-v-b6554ae1',r&&'is-fixed',s&&'has-search']}}" style="{{t}}">
+    <view catchtouchmove="{{g}}" class="da-dropdown-search data-v-b6554ae1" wx:if="{{a}}">
+        <input bindconfirm="{{e}}" bindinput="{{c}}" class="da-dropdown-search-input data-v-b6554ae1" confirmType="search" placeholder="{{d}}" value="{{b}}"></input>
+        <button bindtap="{{f}}" class="da-dropdown-search-btn data-v-b6554ae1">搜索</button>
+    </view>
+    <view catchtouchmove="{{i}}" class="da-dropdown-menu data-v-b6554ae1">
+        <view bindtap="{{item.j}}" class="{{['da-dropdown-menu-item','data-v-b6554ae1',item.h&&'is-hidden']}}" wx:for="{{h}}" wx:key="i">
+            <text class="{{['da-dropdown-menu-item--text','data-v-b6554ae1',item.b]}}">{{item.a}}</text>
+            <view class="da-dropdown-menu-item--icon data-v-b6554ae1" wx:if="{{item.c}}">
+                <text class="is--loading data-v-b6554ae1" wx:if="{{item.d}}"></text>
+                <text class="is--arrup data-v-b6554ae1" wx:elif="{{item.e}}"></text>
+                <text class="is--arrdown data-v-b6554ae1" wx:else></text>
+            </view>
+            <view class="{{['da-dropdown-menu-item--sort','data-v-b6554ae1',item.g]}}" wx:elif="{{item.f}}"></view>
+        </view>
+    </view>
+    <view class="{{['da-dropdown-content','data-v-b6554ae1',o&&'is-show',p&&'is-visible']}}">
+        <view class="{{['da-dropdown-content-popup','data-v-b6554ae1',k]}}">
+            <view class="da-dropdown-popup-box data-v-b6554ae1" wx:for="{{j}}" wx:key="G">
+                <dropdown-cell bind:__l="__l" bindsuccess="{{item.b}}" class="data-v-b6554ae1" uI="{{item.c}}" uP="{{item.d}}" wx:if="{{item.a}}"></dropdown-cell>
+                <dropdown-filter bind:__l="__l" bindsuccess="{{item.f}}" class="data-v-b6554ae1" uI="{{item.g}}" uP="{{item.h}}" wx:if="{{item.e}}"></dropdown-filter>
+                <dropdown-picker bind:__l="__l" bindsuccess="{{item.j}}" class="data-v-b6554ae1" uI="{{item.k}}" uP="{{item.l}}" wx:if="{{item.i}}"></dropdown-picker>
+                <dropdown-daterange bind:__l="__l" bindsuccess="{{item.n}}" class="data-v-b6554ae1" uI="{{item.o}}" uP="{{item.p}}" wx:if="{{item.m}}"></dropdown-daterange>
+                <slot name="{{item.r}}" wx:if="{{item.q}}"></slot>
+                <slot name="{{item.v}}" wx:if="{{item.t}}"></slot>
+                <slot name="{{item.y}}" wx:if="{{item.x}}"></slot>
+                <slot name="{{item.B}}" wx:if="{{item.A}}"></slot>
+                <slot name="{{item.E}}" wx:if="{{item.D}}"></slot>
+            </view>
+        </view>
+        <view bindtap="{{m}}" catchtouchmove="{{n}}" class="da-dropdown-content-mask data-v-b6554ae1" wx:if="{{l}}"></view>
+    </view>
+    <view class="da-dropdown--blank data-v-b6554ae1" wx:if="{{q}}"></view>
+</view>

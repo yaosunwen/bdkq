@@ -1,0 +1,324 @@
+<block wx:if="{{a}}">
+    <view class="topBg data-v-2bbd6b80"></view>
+    <view class="careModePatientInfo data-v-2bbd6b80">
+        <image class="headNameimgCareMode data-v-2bbd6b80" mode="aspectFit" src="{{c}}" wx:if="{{b}}"></image>
+        <image class="headNameimgCareMode data-v-2bbd6b80" mode="aspectFit" src="{{d}}" wx:else></image>
+        <view class="headNameInfoCareMode data-v-2bbd6b80">
+            <block wx:if="{{e}}">
+                <view class="nameAndAuthenticationCareMode data-v-2bbd6b80">
+                    <view class="usrenameStyleCareMode data-v-2bbd6b80">
+                        <text class="data-v-2bbd6b80">{{f}}</text>
+                    </view>
+                    <view class="yrzyhBoxCareMode data-v-2bbd6b80">
+                        <text class="data-v-2bbd6b80">已实名</text>
+                    </view>
+                </view>
+                <view class="sm_nameCareMode data-v-2bbd6b80">
+                    <text class="data-v-2bbd6b80">证件号：{{g}}</text>
+                </view>
+            </block>
+            <view class="elseUserinfoCareMode data-v-2bbd6b80" wx:else>
+                <view class="usrenameStyleCareMode data-v-2bbd6b80">
+                    <text class="data-v-2bbd6b80">未登录用户</text>
+                </view>
+                <image alt="" class="wrzyhIconCareMode data-v-2bbd6b80" src="{{h}}"></image>
+            </view>
+        </view>
+    </view>
+    <view bindtap="{{k}}" class="careModeItemRecord data-v-2bbd6b80">
+        <view class="left data-v-2bbd6b80">
+            <image class="data-v-2bbd6b80" mode="aspectFit" src="{{i}}"></image>
+            <text class="data-v-2bbd6b80">预约挂号</text>
+        </view>
+        <image class="right data-v-2bbd6b80" mode="aspectFit" src="{{j}}"></image>
+    </view>
+    <view bindtap="{{n}}" class="careModeItemRecord data-v-2bbd6b80">
+        <view class="left data-v-2bbd6b80">
+            <image class="data-v-2bbd6b80" mode="aspectFit" src="{{l}}"></image>
+            <text class="data-v-2bbd6b80">明日挂号</text>
+        </view>
+        <image class="right data-v-2bbd6b80" mode="aspectFit" src="{{m}}"></image>
+    </view>
+    <view bindtap="{{q}}" class="careModeItemRecord data-v-2bbd6b80">
+        <view class="left data-v-2bbd6b80">
+            <image class="data-v-2bbd6b80" mode="aspectFit" src="{{o}}"></image>
+            <text class="data-v-2bbd6b80">去缴费</text>
+        </view>
+        <image class="right data-v-2bbd6b80" mode="aspectFit" src="{{p}}"></image>
+    </view>
+    <view bindtap="{{t}}" class="careModeItemRecord data-v-2bbd6b80">
+        <view class="left data-v-2bbd6b80">
+            <image class="data-v-2bbd6b80" mode="aspectFit" src="{{r}}"></image>
+            <text class="data-v-2bbd6b80">看报告</text>
+        </view>
+        <image class="right data-v-2bbd6b80" mode="aspectFit" src="{{s}}"></image>
+    </view>
+    <view bindtap="{{x}}" class="careModeItemRecord data-v-2bbd6b80">
+        <view class="left data-v-2bbd6b80">
+            <image class="data-v-2bbd6b80" mode="aspectFit" src="{{v}}"></image>
+            <text class="data-v-2bbd6b80">个人中心</text>
+        </view>
+        <image class="right data-v-2bbd6b80" mode="aspectFit" src="{{w}}"></image>
+    </view>
+    <view bindtap="{{y}}" class="bottomView data-v-2bbd6b80">
+        <text class="data-v-2bbd6b80">切换 标准模式</text>
+    </view>
+</block>
+<block wx:else>
+    <view class="jzrClass data-v-2bbd6b80">
+        <image class="jzrBg data-v-2bbd6b80" src="{{A}}" wx:if="{{z}}"></image>
+        <view bindtap="{{G}}" class="dzjzk data-v-2bbd6b80" wx:if="{{B}}">
+            <text class="data-v-2bbd6b80">就诊人管理</text>
+            <view class="patientInfo data-v-2bbd6b80">
+                <image class="patientInfoLeft data-v-2bbd6b80" mode="aspectFit" src="{{C}}"></image>
+                <view class="patientInfoMiddle data-v-2bbd6b80">
+                    <text class="data-v-2bbd6b80">{{D}}</text>
+                    <text class="data-v-2bbd6b80">证件号：{{E}}</text>
+                </view>
+                <view class="patientInfoRight data-v-2bbd6b80">
+                    <image class="data-v-2bbd6b80" mode="" src="{{F}}"></image>
+                </view>
+            </view>
+        </view>
+        <view class="noAuth data-v-2bbd6b80" wx:else>
+            <view class="noAuthLeft data-v-2bbd6b80">
+                <image class="data-v-2bbd6b80" mode="aspectFit" src="{{H}}"></image>
+                <view class="data-v-2bbd6b80">
+                    <text class="data-v-2bbd6b80">请绑定就诊人</text>
+                    <text class="data-v-2bbd6b80">先实名认证，再就医~</text>
+                </view>
+            </view>
+            <view bindtap="{{I}}" class="noAuthRight data-v-2bbd6b80">
+                <text class="data-v-2bbd6b80">立即认证</text>
+            </view>
+        </view>
+    </view>
+    <view class="top data-v-2bbd6b80">
+        <view bindtap="{{M}}" class="grid-title data-v-2bbd6b80">
+            <image class="data-v-2bbd6b80" mode="scaleToFill" src="{{J}}"></image>
+            <swiper autoplay="{{true}}" circular="{{true}}" class="data-v-2bbd6b80" duration="{{300}}" indicatorDots="{{false}}" interval="{{3000}}" vertical="{{true}}">
+                <block wx:if="{{K}}">
+                    <swiper-item class="swiper-item data-v-2bbd6b80" wx:for="{{L}}" wx:key="b">
+                        <text class="data-v-2bbd6b80">{{item.a}}</text>
+                    </swiper-item>
+                </block>
+                <swiper-item class="no_data data-v-2bbd6b80" wx:else>
+                    <text class="data-v-2bbd6b80">暂无公告信息</text>
+                </swiper-item>
+            </swiper>
+        </view>
+    </view>
+    <view class="ghClass data-v-2bbd6b80">
+        <view bindtap="{{O}}" class="ghItemClass data-v-2bbd6b80">
+            <image class="data-v-2bbd6b80" mode="" src="{{N}}"></image>
+            <view class="ghItemRight data-v-2bbd6b80">
+                <text class="data-v-2bbd6b80">预约挂号</text>
+                <text class="data-v-2bbd6b80">快速预约轻松就医</text>
+            </view>
+        </view>
+        <view bindtap="{{R}}" class="ghItemClass data-v-2bbd6b80">
+            <image class="data-v-2bbd6b80" mode="" src="{{P}}"></image>
+            <view class="ghItemRight data-v-2bbd6b80">
+                <text class="data-v-2bbd6b80">{{Q}}</text>
+                <text class="data-v-2bbd6b80">分时挂号精准就医</text>
+            </view>
+        </view>
+    </view>
+    <view class="otherGhClass data-v-2bbd6b80">
+        <view bindtap="{{T}}" class="otherGhItemClass data-v-2bbd6b80">
+            <text class="data-v-2bbd6b80">特需医疗部</text>
+            <text class="data-v-2bbd6b80" style="font-size:var(--rk_h8);font-weight:500">(非医保)</text>
+            <view class="toGh data-v-2bbd6b80">
+                <text class="data-v-2bbd6b80">去挂号</text>
+                <view class="toGhRight data-v-2bbd6b80">
+                    <image class="data-v-2bbd6b80" mode="" src="{{S}}"></image>
+                </view>
+            </view>
+        </view>
+        <view bindtap="{{V}}" class="otherGhItemClass data-v-2bbd6b80">
+            <text class="data-v-2bbd6b80">国合门诊</text>
+            <text class="data-v-2bbd6b80" style="font-size:var(--rk_h8);font-weight:500">(国际门诊)</text>
+            <view class="toGh data-v-2bbd6b80">
+                <text class="data-v-2bbd6b80">去挂号</text>
+                <view class="toGhRight data-v-2bbd6b80">
+                    <image class="data-v-2bbd6b80" mode="" src="{{U}}"></image>
+                </view>
+            </view>
+        </view>
+        <view bindtap="{{X}}" class="otherGhItemClass data-v-2bbd6b80">
+            <text class="data-v-2bbd6b80">天竺门诊</text>
+            <text class="data-v-2bbd6b80" style="font-size:var(--rk_h8);font-weight:500">(非医保)</text>
+            <view class="toGh data-v-2bbd6b80">
+                <text class="data-v-2bbd6b80">去挂号</text>
+                <view class="toGhRight data-v-2bbd6b80">
+                    <image class="data-v-2bbd6b80" mode="" src="{{W}}"></image>
+                </view>
+            </view>
+        </view>
+        <view bindtap="{{Z}}" class="otherGhItemClass data-v-2bbd6b80">
+            <text class="data-v-2bbd6b80">三亚门诊</text>
+            <view class="toGh data-v-2bbd6b80">
+                <text class="data-v-2bbd6b80">去挂号</text>
+                <view class="toGhRight data-v-2bbd6b80">
+                    <image class="data-v-2bbd6b80" mode="" src="{{Y}}"></image>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="yltd data-v-2bbd6b80">
+        <view bindtap="{{ab}}" class="yltd_item data-v-2bbd6b80">
+            <text class="data-v-2bbd6b80">科室介绍</text>
+            <image class="data-v-2bbd6b80" mode="" src="{{aa}}"></image>
+        </view>
+        <view bindtap="{{ad}}" class="yltd_item data-v-2bbd6b80" style="background:linear-gradient(#FFFCF7 0%, #FFF 80%, #FFF 100%)">
+            <text class="data-v-2bbd6b80">医生介绍</text>
+            <image class="data-v-2bbd6b80" mode="" src="{{ac}}"></image>
+        </view>
+    </view>
+    <view class="fourFunctionClass data-v-2bbd6b80">
+        <view bindtap="{{ae}}" class="item data-v-2bbd6b80">
+            <text class="data-v-2bbd6b80">就医指南</text>
+        </view>
+        <view bindtap="{{af}}" class="item data-v-2bbd6b80" style="background:linear-gradient( 180deg, #6371D9 0%, #A5A9F2 100%)">
+            <text class="data-v-2bbd6b80">报告查询</text>
+        </view>
+        <view bindtap="{{ag}}" class="item data-v-2bbd6b80" style="background:linear-gradient( 180deg, #E0910B 0%, #F0CB84 100%)">
+            <text class="data-v-2bbd6b80">门诊缴费</text>
+        </view>
+        <view bindtap="{{ah}}" class="item data-v-2bbd6b80" style="background:linear-gradient( 180deg, #1F83CF 0%, #66B0E9 100%)">
+            <text class="data-v-2bbd6b80">电子发票</text>
+        </view>
+    </view>
+    <view class="ybpz data-v-2bbd6b80">
+        <view bindtap="{{ai}}" class="dzybpz data-v-2bbd6b80">
+            <view class="data-v-2bbd6b80">
+                <text class="data-v-2bbd6b80">医保电子凭证</text>
+                <text class="data-v-2bbd6b80">线上医保支付>></text>
+            </view>
+        </view>
+        <view bindtap="{{aj}}" class="dzybpz data-v-2bbd6b80">
+            <view class="data-v-2bbd6b80">
+                <text class="data-v-2bbd6b80">住院专区</text>
+                <text class="data-v-2bbd6b80">一站式住院服务管理>></text>
+            </view>
+        </view>
+    </view>
+    <view class="yyxx data-v-2bbd6b80">
+        <view class="yyxx_title data-v-2bbd6b80">
+            <image class="data-v-2bbd6b80" mode="" src="{{ak}}"></image>
+            <text class="data-v-2bbd6b80">医院信息</text>
+        </view>
+        <view class="yyxx_content data-v-2bbd6b80">
+            <view bindtap="{{am}}" class="yyxx_item data-v-2bbd6b80">
+                <text class="data-v-2bbd6b80">医院简介</text>
+                <text class="data-v-2bbd6b80">就医更便捷</text>
+                <image class="data-v-2bbd6b80" mode="" src="{{al}}"></image>
+            </view>
+            <view bindtap="{{ao}}" class="yyxx_item data-v-2bbd6b80" style="background:linear-gradient( 134deg, #FFFCF7 0%, #FFF8EB 100%)">
+                <text class="data-v-2bbd6b80">楼层分布</text>
+                <text class="data-v-2bbd6b80">就医更便捷</text>
+                <image class="data-v-2bbd6b80" mode="" src="{{an}}"></image>
+            </view>
+            <view bindtap="{{aq}}" class="yyxx_item data-v-2bbd6b80" style="background:linear-gradient( 134deg, #F5FCF8 0%, #E6FCEE 82%, #E6FCEE 82%, #E3FCEC 100%)">
+                <text class="data-v-2bbd6b80">来院导航</text>
+                <text class="data-v-2bbd6b80">就医更便捷</text>
+                <image class="data-v-2bbd6b80" mode="" src="{{ap}}"></image>
+            </view>
+            <view bindtap="{{as}}" class="yyxx_item data-v-2bbd6b80" style="background:linear-gradient( 134deg, #F7FBFF 0%, #EBF5FF 100%)">
+                <text class="data-v-2bbd6b80">院内导航</text>
+                <text class="data-v-2bbd6b80">就医更便捷</text>
+                <image class="data-v-2bbd6b80" mode="" src="{{ar}}"></image>
+            </view>
+        </view>
+    </view>
+    <view class="data-v-2bbd6b80" style="height:50rpx"></view>
+    <view class="popup data-v-2bbd6b80" wx:if="{{at}}">
+        <view class="zixun data-v-2bbd6b80">
+            <view class="zx_top data-v-2bbd6b80">
+                <image class="data-v-2bbd6b80" mode="" src="{{av}}"></image>
+                <text class="zx_title data-v-2bbd6b80">温馨</text>
+                <text class="data-v-2bbd6b80" style="color:var(--themeColor)">提示</text>
+                <image class="data-v-2bbd6b80" mode="" src="{{aw}}"></image>
+                <image class="data-v-2bbd6b80" mode="" src="{{ax}}"></image>
+            </view>
+            <view class="zx_middle data-v-2bbd6b80">
+                <view class="p_detail data-v-2bbd6b80">
+                    <rich-text class="data-v-2bbd6b80" nodes="{{ay}}"></rich-text>
+                </view>
+            </view>
+            <view class="zx_footer data-v-2bbd6b80">
+                <text bindtap="{{az}}" class="txt_2 data-v-2bbd6b80">取消</text>
+                <text bindtap="{{aA}}" class="txt_1 data-v-2bbd6b80">确定</text>
+            </view>
+        </view>
+    </view>
+    <view class="popup data-v-2bbd6b80" wx:if="{{aB}}">
+        <view class="zixun data-v-2bbd6b80">
+            <view class="zx_top data-v-2bbd6b80">
+                <image class="data-v-2bbd6b80" mode="" src="{{aC}}"></image>
+                <text class="zx_title data-v-2bbd6b80">医院</text>
+                <text class="data-v-2bbd6b80">公告</text>
+                <image class="data-v-2bbd6b80" mode="" src="{{aD}}"></image>
+                <image class="data-v-2bbd6b80" mode="" src="{{aE}}"></image>
+            </view>
+            <view class="zx_middle data-v-2bbd6b80">
+                <view class="p_detail data-v-2bbd6b80">
+                    <text class="data-v-2bbd6b80" decode="true">{{aF}}</text>
+                </view>
+            </view>
+            <view class="zx_footer data-v-2bbd6b80">
+                <text bindtap="{{aG}}" class="txt_2 data-v-2bbd6b80">稍后再看</text>
+                <text bindtap="{{aH}}" class="txt_1 data-v-2bbd6b80">立即查看</text>
+            </view>
+        </view>
+    </view>
+    <view class="popup data-v-2bbd6b80" wx:if="{{aI}}">
+        <view class="zixun data-v-2bbd6b80">
+            <view class="zx_top data-v-2bbd6b80">
+                <image class="data-v-2bbd6b80" mode="" src="{{aJ}}"></image>
+                <text class="zx_title data-v-2bbd6b80">提示</text>
+                <image class="data-v-2bbd6b80" mode="" src="{{aK}}"></image>
+                <image class="data-v-2bbd6b80" mode="" src="{{aL}}"></image>
+            </view>
+            <view class="zx_middle data-v-2bbd6b80">
+                <view class="p_detail data-v-2bbd6b80">
+                    <text class="data-v-2bbd6b80" decode="true" style="font-weight:800;font-size:40rpx">请需要住院的患者先点击确认，填写住院登记信息</text>
+                </view>
+            </view>
+            <view class="zx_footer data-v-2bbd6b80">
+                <text bindtap="{{aM}}" class="txt_2 data-v-2bbd6b80">忽略</text>
+                <text bindtap="{{aN}}" class="txt_1 data-v-2bbd6b80">确认</text>
+            </view>
+        </view>
+    </view>
+    <view bindtap="{{aU}}" class="regSelectMask data-v-2bbd6b80" wx:if="{{aO}}">
+        <view class="obayy data-v-2bbd6b80">
+            <view class="oHeader data-v-2bbd6b80">选择号源类型</view>
+            <view bindtap="{{aQ}}" class="obayy_item data-v-2bbd6b80">
+                <view class="data-v-2bbd6b80">
+                    <text class="data-v-2bbd6b80">明日挂号</text>
+                    <text class="data-v-2bbd6b80">余号精准挂</text>
+                </view>
+                <image class="data-v-2bbd6b80" mode="" src="{{aP}}"></image>
+            </view>
+            <view bindtap="{{aS}}" class="obayy_item data-v-2bbd6b80" style="background:linear-gradient( 134deg, #FFF7E0 0%, #FFDFD1 100%)">
+                <view class="data-v-2bbd6b80">
+                    <text class="data-v-2bbd6b80">预约挂号</text>
+                    <text class="data-v-2bbd6b80">预约T+2号源</text>
+                </view>
+                <image class="data-v-2bbd6b80" mode="" src="{{aR}}"></image>
+            </view>
+            <view bindtap="{{aT}}" class="obayy_qx data-v-2bbd6b80">取消</view>
+        </view>
+    </view>
+    <view class="popup data-v-2bbd6b80" wx:if="{{aV}}">
+        <view class="cardModelTips data-v-2bbd6b80">
+            <text class="data-v-2bbd6b80">使用长辈版</text>
+            <text class="data-v-2bbd6b80">长辈版挂号更快，使用大字体、大按钮</text>
+            <view class="data-v-2bbd6b80">
+                <text bindtap="{{aW}}" class="data-v-2bbd6b80">取消</text>
+                <text bindtap="{{aX}}" class="data-v-2bbd6b80">确定</text>
+            </view>
+        </view>
+    </view>
+</block>

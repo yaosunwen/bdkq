@@ -1,0 +1,7 @@
+<view class="da-dropdown-cell data-v-b2bf96d3">
+    <view bindtap="{{item.g}}" class="{{['da-dropdown-cell-item','data-v-b2bf96d3',item.d,item.e]}}" wx:for="{{a}}" wx:key="f">
+        <text class="da-dropdown-cell-item--label data-v-b2bf96d3">{{item.a}}</text>
+        <text class="da-dropdown-cell-item--suffix data-v-b2bf96d3">{{item.b}}</text>
+        <text class="da-dropdown-cell-item--check data-v-b2bf96d3" wx:if="{{item.c}}"></text>
+    </view>
+</view>

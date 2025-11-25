@@ -1,0 +1,9 @@
+{
+    "component": true,
+    "usingComponents": {
+        "dropdown-picker": "./components/picker",
+        "dropdown-cell": "./components/cell",
+        "dropdown-filter": "./components/filter",
+        "dropdown-daterange": "./components/daterange"
+    }
+}

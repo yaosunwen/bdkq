@@ -1,0 +1,18 @@
+.uni-countdown.data-v-1eccd148 {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.uni-countdown__splitor.data-v-1eccd148 {
+    color: #333;
+    font-size: 14px;
+    margin: 0 2px;
+}
+
+.uni-countdown__number.data-v-1eccd148 {
+    border-radius: 3px;
+    font-size: 14px;
+    text-align: center;
+}

@@ -1,0 +1,124 @@
+<view class="mineHeader data-v-963597bf">
+    <view class="headUserinfo data-v-963597bf">
+        <image class="headNameimg data-v-963597bf" mode="aspectFit" src="{{b}}" wx:if="{{a}}"></image>
+        <image class="headNameimg data-v-963597bf" mode="aspectFit" src="{{c}}" wx:else></image>
+        <view class="headNameInfo data-v-963597bf">
+            <view class="data-v-963597bf">
+                <block wx:if="{{d}}">
+                    <view class="nameAndAuthentication data-v-963597bf">
+                        <view class="usrenameStyle data-v-963597bf">
+                            <text class="data-v-963597bf">{{e}}</text>
+                        </view>
+                        <view class="yrzyhBox data-v-963597bf">
+                            <image alt="" class="ysmrzIcon data-v-963597bf" src="{{f}}"></image>
+                            <view class="data-v-963597bf">
+                                <text class="data-v-963597bf">已实名认证</text>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="sm_name data-v-963597bf">
+                        <text class="data-v-963597bf">证件号：{{g}}</text>
+                    </view>
+                    <view class="sm_name data-v-963597bf">
+                        <text class="data-v-963597bf">手机号：{{h}}</text>
+                    </view>
+                </block>
+                <view class="elseUserinfo data-v-963597bf" wx:else>
+                    <view class="usrenameStyle data-v-963597bf">
+                        <text class="data-v-963597bf">未登录用户</text>
+                    </view>
+                    <image alt="" class="wrzyhIcon data-v-963597bf" src="{{i}}"></image>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="myClientCard data-v-963597bf" wx:if="{{j}}">
+        <view bindtap="{{n}}" class="myClientCardTitle data-v-963597bf">
+            <view class="data-v-963597bf">
+                <text class="data-v-963597bf">我的就诊人 ({{k}}/{{l}})</text>
+            </view>
+            <view class="myClientCardTitleRight data-v-963597bf">
+                <view class="data-v-963597bf">
+                    <text class="data-v-963597bf">管理</text>
+                </view>
+                <image alt="" class="myClientCardTitleRightIcon data-v-963597bf" src="{{m}}"></image>
+            </view>
+        </view>
+        <view class="myClientCardBody data-v-963597bf">
+            <view class="myClientCardBodyUser data-v-963597bf">
+                <view class="data-v-963597bf" wx:for="{{o}}" wx:key="l">
+                    <view class="myClientCardBodyUserPhoto data-v-963597bf">
+                        <view bindtap="{{item.d}}" class="data-v-963597bf" wx:if="{{item.a}}">
+                            <image alt="" class="data-v-963597bf" src="{{item.b}}" style="width:96rpx;height:100rpx"></image>
+                            <view class="myClientCardBodyUserName data-v-963597bf">
+                                <text class="data-v-963597bf">{{item.c}}</text>
+                            </view>
+                        </view>
+                        <view bindtap="{{item.h}}" class="data-v-963597bf" wx:elif="{{item.e}}">
+                            <image alt="" class="data-v-963597bf" src="{{item.f}}" style="width:96rpx;height:100rpx"></image>
+                            <view class="myClientCardBodyUserName data-v-963597bf">
+                                <text class="data-v-963597bf">{{item.g}}</text>
+                            </view>
+                        </view>
+                        <image alt="" bindtap="{{item.j}}" class="data-v-963597bf" src="{{item.k}}" style="width:100rpx;height:100rpx" wx:elif="{{item.i}}"></image>
+                    </view>
+                </view>
+                <view class="data-v-963597bf">
+                    <view class="myClientCardBodyUserPhoto data-v-963597bf">
+                        <view class="data-v-963597bf" style="width:96rpx;height:100rpx"></view>
+                    </view>
+                </view>
+                <view class="data-v-963597bf">
+                    <view class="myClientCardBodyUserPhoto data-v-963597bf">
+                        <view class="data-v-963597bf" style="width:96rpx;height:100rpx"></view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view bindtap="{{r}}" class="headYhwrz data-v-963597bf" wx:else>
+        <view class="imageView data-v-963597bf">
+            <image alt="" class="data-v-963597bf" src="{{p}}"></image>
+            <text class="regAndBindCard data-v-963597bf">立即认证</text>
+        </view>
+        <view class="tipsView data-v-963597bf">
+            <view class="yhwrzView data-v-963597bf" wx:for="{{q}}" wx:key="b">
+                <view class="yhwrzRound data-v-963597bf"></view>
+                <view class="data-v-963597bf">
+                    <text class="data-v-963597bf">{{item.a}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="box data-v-963597bf">
+    <view class="list data-v-963597bf">
+        <view class="ul data-v-963597bf">
+            <view bindtap="{{item.d}}" class="li data-v-963597bf" wx:for="{{s}}" wx:key="c">
+                <image class="data-v-963597bf" mode="aspectFit" src="{{item.a}}"></image>
+                <view class="data-v-963597bf">
+                    <text class="data-v-963597bf">{{item.b}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="ver_list data-v-963597bf">
+        <view class="ver_ul data-v-963597bf">
+            <view bindtap="{{item.d}}" class="ver_li data-v-963597bf" wx:for="{{t}}" wx:key="e">
+                <view class="l-left data-v-963597bf">
+                    <image alt="" class="data-v-963597bf" src="{{item.a}}"></image>
+                    <text class="data-v-963597bf">{{item.b}}</text>
+                </view>
+                <view class="l-right data-v-963597bf">
+                    <image alt="" class="data-v-963597bf" src="{{v}}"></image>
+                </view>
+                <button class="btn data-v-963597bf" openType="feedback" plain="true" wx:if="{{item.c}}"></button>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="data-v-963597bf" style="padding:15rpx"></view>
+<view bindtap="{{x}}" class="tcdl data-v-963597bf" wx:if="{{w}}">
+    <text class="data-v-963597bf">注销用户</text>
+</view>
+<view class="data-v-963597bf" style="height:100rpx"></view>

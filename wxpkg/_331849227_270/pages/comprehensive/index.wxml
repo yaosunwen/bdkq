@@ -1,0 +1,63 @@
+<view class="serviceClass data-v-6b841943">
+    <view class="serviceItemView data-v-6b841943">
+        <view bindtap="{{item.d}}" class="serviceItem data-v-6b841943" wx:for="{{a}}" wx:key="c">
+            <image class="data-v-6b841943" mode="aspectFit" src="{{item.a}}"></image>
+            <text class="data-v-6b841943">{{item.b}}</text>
+        </view>
+    </view>
+</view>
+<view class="serviceClass data-v-6b841943">
+    <view class="serviceItemView data-v-6b841943">
+        <view bindtap="{{item.d}}" class="serviceItem data-v-6b841943" wx:for="{{b}}" wx:key="c">
+            <image class="data-v-6b841943" mode="aspectFit" src="{{item.a}}"></image>
+            <text class="data-v-6b841943">{{item.b}}</text>
+        </view>
+    </view>
+</view>
+<view class="serviceClass data-v-6b841943">
+    <view class="serviceItemView data-v-6b841943">
+        <view bindtap="{{item.d}}" class="serviceItem data-v-6b841943" wx:for="{{c}}" wx:key="c">
+            <image class="data-v-6b841943" mode="aspectFit" src="{{item.a}}"></image>
+            <text class="data-v-6b841943">{{item.b}}</text>
+        </view>
+    </view>
+</view>
+<view class="serviceClass data-v-6b841943">
+    <view class="serviceItemView data-v-6b841943">
+        <view bindtap="{{item.d}}" class="serviceItem data-v-6b841943" wx:for="{{d}}" wx:key="c">
+            <image class="data-v-6b841943" mode="aspectFit" src="{{item.a}}"></image>
+            <text class="data-v-6b841943">{{item.b}}</text>
+        </view>
+    </view>
+</view>
+<view bindtap="{{k}}" class="regSelectMask data-v-6b841943" wx:if="{{e}}">
+    <view class="obayy data-v-6b841943">
+        <view class="oHeader data-v-6b841943">选择号源类型</view>
+        <view bindtap="{{g}}" class="obayy_item data-v-6b841943">
+            <view class="data-v-6b841943">
+                <text class="data-v-6b841943">明日挂号</text>
+                <text class="data-v-6b841943">余号精准挂</text>
+            </view>
+            <image class="data-v-6b841943" mode="" src="{{f}}"></image>
+        </view>
+        <view bindtap="{{i}}" class="obayy_item data-v-6b841943" style="background:linear-gradient( 134deg, #FFF7E0 0%, #FFDFD1 100%)">
+            <view class="data-v-6b841943">
+                <text class="data-v-6b841943">预约挂号</text>
+                <text class="data-v-6b841943">预约T+2号源</text>
+            </view>
+            <image class="data-v-6b841943" mode="" src="{{h}}"></image>
+        </view>
+        <view bindtap="{{j}}" class="obayy_qx data-v-6b841943">取消</view>
+    </view>
+</view>
+<view class="aiConsultView data-v-6b841943" id="v_aiConsult" wx:if="{{l}}">
+    <movable-area class="movable-area data-v-6b841943">
+        <movable-view class="movable-view data-v-6b841943" direction="all" x="{{o}}" y="{{p}}">
+            <button bindtap="{{n}}" class="aiConsult_btn data-v-6b841943">
+                <view class="cell_hd data-v-6b841943">
+                    <image class="icon data-v-6b841943" mode="scaleToFill" src="{{m}}"></image>
+                </view>
+            </button>
+        </movable-view>
+    </movable-area>
+</view>

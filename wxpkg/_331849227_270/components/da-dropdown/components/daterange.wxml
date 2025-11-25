@@ -1,0 +1,17 @@
+<view class="da-dropdown-daterange-box data-v-a4486dcf">
+    <view class="da-dropdown-daterange data-v-a4486dcf">
+        <view class="{{['da-dropdown-daterange--date','data-v-a4486dcf',d]}}">
+            <picker bindchange="{{c}}" class="data-v-a4486dcf" mode="date" value="{{b}}">{{a}}</picker>
+        </view>
+        <view class="da-dropdown-daterange--separate data-v-a4486dcf">至</view>
+        <view class="{{['da-dropdown-daterange--date','data-v-a4486dcf',j]}}">
+            <picker bindchange="{{i}}" class="data-v-a4486dcf" disabled="{{g}}" mode="date" start="{{h}}" value="{{f}}">{{e}}</picker>
+        </view>
+    </view>
+    <view class="da-dropdown-daterange-tags data-v-a4486dcf" wx:if="{{k}}">
+        <view bindtap="{{tag.c}}" class="{{['da-dropdown-tag','data-v-a4486dcf',tag.b]}}" wx:for="{{l}}" wx:for-item="tag" wx:key="d">
+            <text class="da-dropdown-tag--text data-v-a4486dcf">{{tag.a}}</text>
+        </view>
+    </view>
+    <part-dropdown-footer bind:__l="__l" bindconfirm="{{n}}" bindreset="{{m}}" class="data-v-a4486dcf" uI="a4486dcf-0" uP="{{o}}" wx:if="{{o}}"></part-dropdown-footer>
+</view>

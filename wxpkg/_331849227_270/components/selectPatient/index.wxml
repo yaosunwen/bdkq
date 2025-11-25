@@ -1,0 +1,72 @@
+<view class="topMask data-v-e478a01a" hidden="{{!a}}"></view>
+<view class="oPage data-v-e478a01a">
+    <view class="patientShow data-v-e478a01a">
+        <view class="patientInfo data-v-e478a01a">
+            <text class="data-v-e478a01a">{{b}}</text>
+            <text class="data-v-e478a01a">({{c}})</text>
+        </view>
+        <view bindtap="{{e}}" class="data-v-e478a01a">
+            <text class="data-v-e478a01a">切换就诊人</text>
+            <image alt="" class="data-v-e478a01a" src="{{d}}"></image>
+        </view>
+        <view bindtap="{{h}}" class="data-v-e478a01a" wx:if="{{f}}">
+            <text class="data-v-e478a01a">筛选</text>
+            <image alt="" class="data-v-e478a01a" src="{{g}}"></image>
+        </view>
+    </view>
+    <view class="{{['data-v-e478a01a',j]}}" hidden="{{!k}}">
+        <view bindtap="{{item.e}}" class="{{['data-v-e478a01a',item.d]}}" wx:for="{{i}}" wx:key="f">
+            <view class="data-v-e478a01a">
+                <text class="data-v-e478a01a">{{item.a}}</text>
+                <text class="data-v-e478a01a">（{{item.b}}）</text>
+            </view>
+            <text class="cuIcon-check data-v-e478a01a" wx:if="{{item.c}}"></text>
+        </view>
+    </view>
+    <view class="filterBox data-v-e478a01a" wx:if="{{l}}">
+        <view class="selectBtnBox data-v-e478a01a">
+            <view bindtap="{{o}}" class="{{['data-v-e478a01a',n]}}" wx:if="{{m}}">
+                <text class="data-v-e478a01a">当天</text>
+            </view>
+            <view bindtap="{{r}}" class="{{['data-v-e478a01a',q]}}" wx:if="{{p}}">
+                <text class="data-v-e478a01a">近一周</text>
+            </view>
+            <view bindtap="{{v}}" class="{{['data-v-e478a01a',t]}}" wx:if="{{s}}">
+                <text class="data-v-e478a01a">近十五天</text>
+            </view>
+            <view bindtap="{{y}}" class="{{['data-v-e478a01a',x]}}" wx:if="{{w}}">
+                <text class="data-v-e478a01a">近一月</text>
+            </view>
+        </view>
+        <view class="filterFunName data-v-e478a01a">时间选择</view>
+        <view class="filterTimePicker data-v-e478a01a">
+            <picker bindchange="{{B}}" class="data-v-e478a01a" mode="date" value="{{A}}">
+                <view class="data-v-e478a01a">
+                    <text class="data-v-e478a01a">{{z}}</text>
+                </view>
+            </picker>
+            <text class="data-v-e478a01a">至</text>
+            <picker bindchange="{{E}}" class="data-v-e478a01a" mode="date" value="{{D}}">
+                <view class="data-v-e478a01a">
+                    <text class="data-v-e478a01a">{{C}}</text>
+                </view>
+            </picker>
+        </view>
+        <block wx:if="{{F}}">
+            <view class="filterFunName data-v-e478a01a">
+                <text class="data-v-e478a01a">状态</text>
+            </view>
+            <view class="statesList data-v-e478a01a">
+                <view bindtap="{{item.c}}" class="{{['statesView','data-v-e478a01a',item.b]}}" style="{{item.d}}" wx:for="{{G}}" wx:key="e">{{item.a}}</view>
+            </view>
+        </block>
+        <view class="filterBottom data-v-e478a01a">
+            <view bindtap="{{H}}" class="filterReset data-v-e478a01a">
+                <text class="data-v-e478a01a">重置</text>
+            </view>
+            <view bindtap="{{I}}" class="filterOk data-v-e478a01a">
+                <text class="data-v-e478a01a">确定</text>
+            </view>
+        </view>
+    </view>
+</view>

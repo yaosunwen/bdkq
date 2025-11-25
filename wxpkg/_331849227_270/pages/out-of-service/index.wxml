@@ -1,0 +1,6 @@
+<view class="title data-v-66783717">系统提示：</view>
+<view class="content data-v-66783717">{{a}}</view>
+<view class="maintain data-v-66783717">
+    <image class="data-v-66783717" mode="" src="{{b}}"></image>
+    <button bindtap="{{c}}" class="data-v-66783717">我知道了</button>
+</view>

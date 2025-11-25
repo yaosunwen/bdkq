@@ -1,0 +1,20 @@
+<view class="uni-file-picker__container">
+    <view class="file-picker__box" style="{{d}}" wx:for="{{a}}" wx:key="i">
+        <view class="file-picker__box-content" style="{{c}}">
+            <image catchtap="{{item.b}}" class="file-image" mode="aspectFill" src="{{item.a}}"></image>
+            <view catchtap="{{item.c}}" class="icon-del-box" wx:if="{{b}}">
+                <view class="icon-del"></view>
+                <view class="icon-del rotate"></view>
+            </view>
+            <view class="file-picker__progress" wx:if="{{item.d}}">
+                <progress backgroundColor="{{item.f}}" class="file-picker__progress-item" percent="{{item.e}}" strokeWidth="4"></progress>
+            </view>
+            <view catchtap="{{item.h}}" class="file-picker__mask" wx:if="{{item.g}}">点击重试</view>
+        </view>
+    </view>
+    <view class="file-picker__box" style="{{h}}" wx:if="{{e}}">
+        <view bindtap="{{g}}" class="file-picker__box-content is-add" style="{{f}}">
+            <slot></slot>
+        </view>
+    </view>
+</view>

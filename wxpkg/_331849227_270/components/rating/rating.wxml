@@ -1,0 +1,28 @@
+<view class="com-rating data-v-778d6c1a">
+    <block wx:if="{{a}}">
+        <view bindtap="{{item.r}}" class="{{['data-v-778d6c1a',f]}}" wx:for="{{b}}" wx:key="q">
+            <view class="rating-on data-v-778d6c1a" style="{{item.p}}">
+                <image class="data-v-778d6c1a" mode="widthFix" src="{{item.b}}" style="{{item.c}}" wx:if="{{item.a}}"></image>
+                <image class="data-v-778d6c1a" mode="widthFix" src="{{item.e}}" style="{{item.f}}" wx:elif="{{item.d}}"></image>
+                <image class="data-v-778d6c1a" mode="widthFix" src="{{item.h}}" style="{{item.i}}" wx:elif="{{item.g}}"></image>
+                <image class="data-v-778d6c1a" mode="widthFix" src="{{item.k}}" style="{{item.l}}" wx:elif="{{item.j}}"></image>
+                <image class="data-v-778d6c1a" mode="widthFix" src="{{item.n}}" style="{{item.o}}" wx:elif="{{item.m}}"></image>
+            </view>
+            <view class="rating-off data-v-778d6c1a" style="{{e}}">
+                <image class="data-v-778d6c1a" mode="widthFix" src="{{c}}" style="{{d}}"></image>
+            </view>
+        </view>
+    </block>
+    <block wx:else>
+        <view bindtap="{{item.m}}" class="{{['data-v-778d6c1a',k]}}" wx:for="{{g}}" wx:key="l">
+            <view class="rating-on data-v-778d6c1a" style="{{item.g}}">
+                <image class="data-v-778d6c1a" mode="widthFix" src="{{item.a}}" style="{{item.b}}" wx:if="{{h}}"></image>
+                <image class="data-v-778d6c1a" mode="widthFix" src="{{item.c}}" style="{{item.d}}" wx:elif="{{i}}"></image>
+                <image class="data-v-778d6c1a" mode="widthFix" src="{{item.e}}" style="{{item.f}}" wx:elif="{{j}}"></image>
+            </view>
+            <view class="rating-off data-v-778d6c1a" style="{{item.k}}" wx:if="{{item.h}}">
+                <image class="data-v-778d6c1a" mode="widthFix" src="{{item.i}}" style="{{item.j}}"></image>
+            </view>
+        </view>
+    </block>
+</view>

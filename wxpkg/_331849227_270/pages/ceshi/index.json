@@ -1,0 +1,7 @@
+{
+    "navigationBarTitleText": "测试页面",
+    "navigationBarTextStyle": "black",
+    "usingComponents": {
+        "nodata": "../../components/nodata/index"
+    }
+}

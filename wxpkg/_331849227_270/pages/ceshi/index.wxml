@@ -1,0 +1,123 @@
+<view class="onBody data-v-317cb378">
+    <view class="topBg data-v-317cb378"></view>
+    <view class="top data-v-317cb378">
+        <view class="left data-v-317cb378">
+            <view class="name data-v-317cb378">
+                <text class="data-v-317cb378">张俊丽</text>
+                <text class="data-v-317cb378">在线</text>
+            </view>
+            <view class="dept data-v-317cb378">
+                <text class="data-v-317cb378">主任医师 | 消化内科</text>
+            </view>
+            <view class="hosLevel data-v-317cb378">
+                <text class="data-v-317cb378">三甲</text>
+                <text class="data-v-317cb378">北京大学口腔医院</text>
+            </view>
+        </view>
+        <image class="right data-v-317cb378" mode="aspectFit" src="{{a}}"></image>
+    </view>
+    <view class="evaluate data-v-317cb378">
+        <view class="data-v-317cb378">
+            <text class="data-v-317cb378">评分</text>
+            <text class="data-v-317cb378">5.0</text>
+        </view>
+        <view class="data-v-317cb378">
+            <text class="data-v-317cb378">咨询量</text>
+            <text class="data-v-317cb378">1662</text>
+        </view>
+        <view class="data-v-317cb378">
+            <text class="data-v-317cb378">响应时间</text>
+            <text class="data-v-317cb378">2分钟</text>
+        </view>
+    </view>
+    <view class="docIntro data-v-317cb378">
+        <image class="data-v-317cb378" mode="aspectFit" src="{{b}}"></image>
+        <view class="{{['data-v-317cb378',e]}}">
+            <text class="data-v-317cb378">多发病诊治、乏力、消瘦头晕等慢性病全，合管理，生长激素缺乏症、小儿消化不良症生长激素，缺乏症、小儿消化不良症生长激素缺乏症是靠近对方凯撒的肌肤深刻搭街坊空手道解放</text>
+            <view bindtap="{{d}}" class="btn data-v-317cb378">{{c}}</view>
+        </view>
+    </view>
+    <view class="consultView data-v-317cb378">
+        <view class="title data-v-317cb378">
+            <text class="data-v-317cb378">在线咨询</text>
+            <text class="data-v-317cb378">￥ 20</text>
+        </view>
+        <view class="description data-v-317cb378">
+            <view class="item data-v-317cb378">
+                <image class="data-v-317cb378" mode="aspectFit" src="{{f}}"></image>
+                <text class="data-v-317cb378">医生随时接诊</text>
+            </view>
+            <view class="item data-v-317cb378">
+                <image class="data-v-317cb378" mode="aspectFit" src="{{g}}"></image>
+                <text class="data-v-317cb378">24小时内可多次咨询</text>
+            </view>
+            <view class="item data-v-317cb378">
+                <image class="data-v-317cb378" mode="aspectFit" src="{{h}}"></image>
+                <text class="data-v-317cb378">复诊患者可开处方</text>
+            </view>
+            <view class="item data-v-317cb378">
+                <image class="data-v-317cb378" mode="aspectFit" src="{{i}}"></image>
+                <text class="data-v-317cb378">24小时未接诊自动退款</text>
+            </view>
+        </view>
+        <view class="btn data-v-317cb378">
+            <text class="data-v-317cb378">去咨询</text>
+        </view>
+    </view>
+    <view class="btn_nav data-v-317cb378">
+        <view class="left data-v-317cb378">
+            <view bindtap="{{k}}" class="{{['data-v-317cb378',j]}}">文章动态</view>
+            <view bindtap="{{n}}" class="{{['data-v-317cb378',m]}}" style="margin-left:60rpx">医生评价({{l}})</view>
+            <view class="{{['data-v-317cb378',o]}}"></view>
+        </view>
+        <view class="right data-v-317cb378">
+            <text bindtap="{{q}}" class="data-v-317cb378">{{p}}</text>
+        </view>
+    </view>
+    <block wx:if="{{r}}">
+        <nodata bind:__l="__l" class="data-v-317cb378" uI="317cb378-0" uP="{{s}}" wx:if="{{s}}"></nodata>
+    </block>
+    <block wx:else>
+        <block wx:if="{{t}}">
+            <view class="reviewsView data-v-317cb378" wx:for="{{v}}" wx:key="N">
+                <view class="name data-v-317cb378">
+                    <text class="data-v-317cb378">{{item.a}}</text>
+                    <text class="data-v-317cb378">{{item.b}}</text>
+                </view>
+                <view class="reviewScore data-v-317cb378">
+                    <block wx:if="{{item.c}}">
+                        <image class="data-v-317cb378" mode="aspectFit" src="{{item.e}}" wx:for="{{item.d}}" wx:for-item="e" wx:key="a"></image>
+                    </block>
+                    <block wx:if="{{item.f}}">
+                        <image class="data-v-317cb378" mode="aspectFit" src="{{item.h}}" wx:for="{{item.g}}" wx:for-item="e" wx:key="a"></image>
+                        <image class="data-v-317cb378" mode="aspectFit" src="{{item.j}}" wx:for="{{item.i}}" wx:for-item="e" wx:key="a"></image>
+                    </block>
+                    <block wx:if="{{item.k}}">
+                        <image class="data-v-317cb378" mode="aspectFit" src="{{item.m}}" wx:for="{{item.l}}" wx:for-item="e" wx:key="a"></image>
+                        <image class="data-v-317cb378" mode="aspectFit" src="{{item.o}}" wx:for="{{item.n}}" wx:for-item="e" wx:key="a"></image>
+                        <image class="data-v-317cb378" mode="aspectFit" src="{{item.q}}" wx:for="{{item.p}}" wx:for-item="e" wx:key="a"></image>
+                    </block>
+                    <block wx:if="{{item.r}}">
+                        <image class="data-v-317cb378" mode="aspectFit" src="{{item.t}}" wx:for="{{item.s}}" wx:for-item="e" wx:key="a"></image>
+                        <image class="data-v-317cb378" mode="aspectFit" src="{{item.w}}" wx:for="{{item.v}}" wx:for-item="e" wx:key="a"></image>
+                        <image class="data-v-317cb378" mode="aspectFit" src="{{item.y}}" wx:for="{{item.x}}" wx:for-item="e" wx:key="a"></image>
+                        <image class="data-v-317cb378" mode="aspectFit" src="{{item.A}}" wx:for="{{item.z}}" wx:for-item="e" wx:key="a"></image>
+                    </block>
+                    <block wx:if="{{item.B}}">
+                        <image class="data-v-317cb378" mode="aspectFit" src="{{item.D}}" wx:for="{{item.C}}" wx:for-item="e" wx:key="a"></image>
+                        <image class="data-v-317cb378" mode="aspectFit" src="{{item.F}}" wx:for="{{item.E}}" wx:for-item="e" wx:key="a"></image>
+                        <image class="data-v-317cb378" mode="aspectFit" src="{{item.H}}" wx:for="{{item.G}}" wx:for-item="e" wx:key="a"></image>
+                        <image class="data-v-317cb378" mode="aspectFit" src="{{item.J}}" wx:for="{{item.I}}" wx:for-item="e" wx:key="a"></image>
+                        <image class="data-v-317cb378" mode="aspectFit" src="{{item.L}}" wx:for="{{item.K}}" wx:for-item="e" wx:key="a"></image>
+                    </block>
+                </view>
+                <view class="reviewComment data-v-317cb378">
+                    <text class="data-v-317cb378">{{item.M}}</text>
+                </view>
+            </view>
+        </block>
+        <block wx:else>
+            <nodata bind:__l="__l" class="data-v-317cb378" uI="317cb378-1" uP="{{w}}" wx:if="{{w}}"></nodata>
+        </block>
+    </block>
+</view>

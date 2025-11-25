@@ -1,0 +1,22 @@
+<block wx:if="{{a}}">
+    <web-view src="{{c}}" wx:if="{{b}}"></web-view>
+    <block wx:else>
+        <image class="img_1" mode="widthFix" src="{{d}}"></image>
+        <view class="copyright">
+            <text class="l_tip">北京大学口腔医院 {{e}}</text>
+        </view>
+        <view class="load-box">
+            <view class="tui-loading-3"></view>
+            <text>加载中</text>
+        </view>
+    </block>
+</block>
+<view class="error-panel" wx:if="{{f}}">
+    <view class="errorimg-box">
+        <image class="errorimg" mode="heightFix" src="{{g}}"></image>
+    </view>
+    <view class="err-msg">加载失败，请稍后重试</view>
+    <view bindtap="{{h}}" class="reload">重新加载</view>
+    <view bindtap="{{i}}" class="error-tip">[错误信息]</view>
+</view>
+<privacy-agreement bind:__l="__l" bindhandleAgree="{{j}}" uI="1558100a-0" uP="{{k}}" wx:if="{{k}}"></privacy-agreement>

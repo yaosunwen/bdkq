@@ -1,0 +1,15 @@
+<view class="notice data-v-4cf9676e" style="{{l}}" wx:if="{{a}}">
+    <i-icon bind:__l="__l" class="notice__icon data-v-4cf9676e" uI="4cf9676e-0" uP="{{c}}" wx:if="{{b}}"></i-icon>
+    <view class="notice__text--wrap data-v-4cf9676e" style="{{h}}">
+        <view class="notice__text notice__text--animate data-v-4cf9676e" wx:if="{{d}}">
+            <text class="notice__text--span data-v-4cf9676e">{{e}}</text>
+            <text class="notice__text--span data-v-4cf9676e">{{f}}</text>
+        </view>
+        <view class="notice__text data-v-4cf9676e" wx:else>
+            <text class="notice__text--span data-v-4cf9676e">{{g}}</text>
+        </view>
+    </view>
+    <block wx:if="{{i}}">
+        <i-icon bind:__l="__l" bindclick="{{j}}" class="notice__close data-v-4cf9676e" uI="4cf9676e-1" uP="{{k}}" wx:if="{{k}}"></i-icon>
+    </block>
+</view>

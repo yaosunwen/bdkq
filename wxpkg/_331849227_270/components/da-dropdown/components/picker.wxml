@@ -1,0 +1,11 @@
+<view class="da-dropdown-picker data-v-59131b8c" wx:if="{{a}}">
+    <view class="da-dropdown-picker-inner data-v-59131b8c" wx:for="{{b}}" wx:for-item="vc" wx:key="b">
+        <scroll-view scrollY class="da-dropdown-picker-view data-v-59131b8c">
+            <view bindtap="{{vr.f}}" class="{{['da-dropdown-picker-item','data-v-59131b8c',vr.d]}}" wx:for="{{vc.a}}" wx:for-item="vr" wx:key="e">
+                <text class="da-dropdown-picker-item--name data-v-59131b8c">{{vr.a}}</text>
+                <text class="da-dropdown-picker-item--icon data-v-59131b8c" wx:if="{{vr.b}}"></text>
+                <text class="da-dropdown-picker-item--check data-v-59131b8c" wx:if="{{vr.c}}"></text>
+            </view>
+        </scroll-view>
+    </view>
+</view>

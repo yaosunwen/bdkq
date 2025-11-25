@@ -1,0 +1,4 @@
+<view class="da-dropdown-footer data-v-b0b9bbcc">
+    <view bindtap="{{b}}" class="da-dropdown-footer--reset data-v-b0b9bbcc">{{a}}</view>
+    <view bindtap="{{d}}" class="da-dropdown-footer--confirm data-v-b0b9bbcc">{{c}}</view>
+</view>

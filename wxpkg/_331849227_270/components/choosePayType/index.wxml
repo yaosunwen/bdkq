@@ -1,0 +1,32 @@
+<view class="chooseBox data-v-96d1879f" wx:if="{{a}}">
+    <view class="btnBox data-v-96d1879f">
+        <image bindtap="{{b}}" class="closeBtn data-v-96d1879f" src="{{c}}"></image>
+        <view class="header data-v-96d1879f">
+            <text class="data-v-96d1879f">支付方式选择</text>
+        </view>
+        <view bindtap="{{h}}" class="type data-v-96d1879f">
+            <image alt="" class="tjImg data-v-96d1879f" src="{{d}}"></image>
+            <view class="leftBox data-v-96d1879f">
+                <image alt="" class="ybLogo data-v-96d1879f" src="{{e}}"></image>
+                <text class="data-v-96d1879f">{{f}}</text>
+            </view>
+            <view class="radio data-v-96d1879f">
+                <radio checked="{{g}}" class="data-v-96d1879f"></radio>
+            </view>
+        </view>
+        <view bindtap="{{k}}" class="type data-v-96d1879f">
+            <view class="leftBox data-v-96d1879f">
+                <image alt="" class="zfLogo data-v-96d1879f" src="{{i}}"></image>
+                <text class="data-v-96d1879f">自费支付</text>
+            </view>
+            <view class="radio data-v-96d1879f">
+                <radio checked="{{j}}" class="data-v-96d1879f"></radio>
+            </view>
+        </view>
+        <view bindtap="{{l}}" class="oBtn data-v-96d1879f">立即支付</view>
+        <view class="notice_view data-v-96d1879f">
+            <text class="notice_text data-v-96d1879f"> 自费支付：费用自费结算支付
+医保移动支付：费用线上医保结算 </text>
+        </view>
+    </view>
+</view>

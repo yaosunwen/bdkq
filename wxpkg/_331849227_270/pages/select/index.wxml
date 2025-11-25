@@ -1,0 +1,93 @@
+<view class="top-box data-v-dc3ea0c1" wx:if="{{a}}">
+    <view bindtap="{{c}}" class="inp data-v-dc3ea0c1">
+        <image class="data-v-dc3ea0c1" src="{{b}}"></image>
+        <text class="data-v-dc3ea0c1">搜索科室、医生</text>
+        <text class="data-v-dc3ea0c1">| 搜索</text>
+    </view>
+    <view class="section data-v-dc3ea0c1" wx:if="{{d}}">
+        <view bindtap="{{e}}" class="tab_bar data-v-dc3ea0c1">
+            <text class="data-v-dc3ea0c1">余号查询</text>
+        </view>
+    </view>
+</view>
+<view class="data-v-dc3ea0c1" style="height:100rpx" wx:if="{{f}}"></view>
+<view class="data-v-dc3ea0c1" style="height:20rpx" wx:else></view>
+<view class="data-v-dc3ea0c1" wx:if="{{g}}">
+    <view class="{{['data-v-dc3ea0c1',i]}}">
+        <view bindtap="{{item.h}}" class="li data-v-dc3ea0c1" wx:if="{{item.a}}" wx:for="{{h}}" wx:key="i">
+            <image class="data-v-dc3ea0c1" src="{{item.b}}"></image>
+            <view class="right data-v-dc3ea0c1">
+                <text class="data-v-dc3ea0c1">{{item.c}}</text>
+                <view class="data-v-dc3ea0c1">
+                    <view class="data-v-dc3ea0c1" wx:if="{{item.d}}">
+                        <image class="data-v-dc3ea0c1" mode="aspectFit" src="{{item.e}}"></image>
+                        <text class="data-v-dc3ea0c1">{{item.f}}km</text>
+                    </view>
+                </view>
+                <view class="data-v-dc3ea0c1">
+                    <text class="data-v-dc3ea0c1">{{item.g}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="data-v-dc3ea0c1" wx:else>
+    <view class="tip data-v-dc3ea0c1">
+        <text class="data-v-dc3ea0c1">剩余号源实时变化，查询结果仅供参考</text>
+    </view>
+    <view class="jgsection data-v-dc3ea0c1">
+        <scroll-view class="hd_wrap data-v-dc3ea0c1" scrollY="{{true}}" style="height:calc(100vh - 250rpx)">
+            <view bindtap="{{item.c}}" class="{{['data-v-dc3ea0c1',item.b]}}" wx:for="{{j}}" wx:key="d">
+                <text class="data-v-dc3ea0c1">{{item.a}}</text>
+            </view>
+        </scroll-view>
+        <scroll-view class="bd_wrap data-v-dc3ea0c1" scrollY="{{true}}" style="height:calc(100vh - 250rpx)">
+            <view class="list_cell data-v-dc3ea0c1" wx:if="{{k}}">
+                <view class="content table data-v-dc3ea0c1">
+                    <view class="s-box flex1 data-v-dc3ea0c1" wx:if="{{l}}">
+                        <nodata bind:__l="__l" class="data-v-dc3ea0c1" uI="dc3ea0c1-0" uP="{{m}}" wx:if="{{m}}"></nodata>
+                    </view>
+                    <block wx:else>
+                        <view class="tb_row data-v-dc3ea0c1">
+                            <view class="tb_cell data-v-dc3ea0c1">
+                                <text class="data-v-dc3ea0c1" style="font-weight:bolder">科室</text>
+                            </view>
+                            <view class="tb_cell data-v-dc3ea0c1">
+                                <text class="data-v-dc3ea0c1" style="font-weight:bolder">余号</text>
+                            </view>
+                        </view>
+                        <view bindtap="{{item.d}}" class="tb_row data-v-dc3ea0c1" wx:for="{{n}}" wx:key="e">
+                            <view class="tb_cell data-v-dc3ea0c1">
+                                <text class="data-v-dc3ea0c1">{{item.a}}</text>
+                            </view>
+                            <view class="tb_cell data-v-dc3ea0c1">
+                                <text class="data-v-dc3ea0c1" style="color:#999" wx:if="{{item.b}}">无号</text>
+                                <text class="data-v-dc3ea0c1" wx:else>{{item.c}}</text>
+                            </view>
+                        </view>
+                    </block>
+                </view>
+            </view>
+        </scroll-view>
+    </view>
+</view>
+<view class="popup data-v-dc3ea0c1" wx:if="{{o}}">
+    <view class="zixun data-v-dc3ea0c1">
+        <view class="zx_top data-v-dc3ea0c1">
+            <image class="data-v-dc3ea0c1" mode="" src="{{p}}"></image>
+            <text class="zx_title data-v-dc3ea0c1">温馨</text>
+            <text class="data-v-dc3ea0c1" style="color:var(--themeColor)">提示</text>
+            <image class="data-v-dc3ea0c1" mode="" src="{{q}}"></image>
+            <image class="data-v-dc3ea0c1" mode="" src="{{r}}"></image>
+        </view>
+        <view class="zx_middle data-v-dc3ea0c1">
+            <view class="p_detail data-v-dc3ea0c1">
+                <rich-text class="data-v-dc3ea0c1" nodes="{{s}}"></rich-text>
+            </view>
+        </view>
+        <view class="zx_footer data-v-dc3ea0c1">
+            <text bindtap="{{t}}" class="txt_2 data-v-dc3ea0c1">取消</text>
+            <text bindtap="{{v}}" class="txt_1 data-v-dc3ea0c1">确定</text>
+        </view>
+    </view>
+</view>

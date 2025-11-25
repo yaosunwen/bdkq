@@ -1,0 +1,7 @@
+{
+    "component": true,
+    "usingComponents": {
+        "markdownPreview": "/wxcomponents/agent-ui/markdownPreview/index",
+        "FoldedCard": "/wxcomponents/agent-ui/collapsibleCard/index"
+    }
+}
