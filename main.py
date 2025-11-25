@@ -11,17 +11,17 @@ from json import JSONDecodeError
 from datetime import datetime, date, timedelta
 from pathlib import Path
 from types import SimpleNamespace
-from typing import Callable, Any, List
+from typing import Callable, Any, List, AsyncContextManager
 
 import yaml
+from aiohttp import ClientResponse, ClientSession, ServerTimeoutError, ClientConnectionError, ClientResponseError, \
+    TCPConnector
 
 from crypto import md5, sm3, sm4_decrypt, sm4_encrypt, base64_encode
 
-import aiohttp
-
 app_home_path = str(Path(__file__).parent)
 app_config: Any
-httpclient: aiohttp.ClientSession
+httpclient: ClientSession
 
 
 def get_nonce() -> str:
@@ -124,7 +124,7 @@ def test_crypt():
     assert decrypt_response(resp_data, sign) == '{\n  "status" : 504,\n  "message" : "service timeout"\n}'
 
 
-def replace_response_json(response: aiohttp.ClientResponse):
+def replace_response_json(response: ClientResponse):
     original_json = response.json
     content = None
 
@@ -150,7 +150,7 @@ def replace_response_json(response: aiohttp.ClientResponse):
     return response
 
 
-def wrap_http_method(func: Callable[..., aiohttp.ClientResponse]):
+def wrap_http_method(func: Callable[..., AsyncContextManager[ClientResponse]]):
     @wraps(func)
     @contextlib.asynccontextmanager
     async def wrapper(url, *args, **kwargs):
@@ -271,11 +271,11 @@ def retry(retry_times: int, interval: float):
                 except RetryException as e:
                     if e.interval is not None:
                         sleep_time = e.interval
-                except aiohttp.ClientResponseError as e:
+                except ClientResponseError as e:
                     last_error = e
-                except aiohttp.ClientConnectionError as e:
+                except ClientConnectionError as e:
                     last_error = e
-                except aiohttp.ServerTimeoutError as e:
+                except ServerTimeoutError as e:
                     last_error = e
 
                 if count == retry_times:
@@ -647,8 +647,8 @@ async def main():
     load_app_config()
 
     global httpclient
-    async with aiohttp.ClientSession(connector=aiohttp.TCPConnector(ssl=False),
-                                     headers={'User-Agent': app_config.user_agent}) as session:
+    async with ClientSession(connector=TCPConnector(ssl=False),
+                             headers={'User-Agent': app_config.user_agent}) as session:
         httpclient = session
         httpclient.get = wrap_http_method(httpclient.get)
         httpclient.post = wrap_http_method(httpclient.post)
